@@ -8,6 +8,9 @@ const todoSchema = new mongoose.Schema({
 
 });
 
-const Todo = new mongoose.model('todo',todoSchema);
-
-module.exports = Todo;
+const createModel = (userName)=>{
+  
+    const Todo = new mongoose.model(userName,todoSchema);
+    return Todo;
+}
+module.exports = {createModel};
