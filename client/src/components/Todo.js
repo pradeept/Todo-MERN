@@ -24,7 +24,6 @@ const Todo = ()=>{
             const user = decodeToken(token);
             setUser(user.name)
             getAllTodos(setTodos,token);
-            // alert("Welcome "+user.name);
         }else{
             navigate('/')
         }

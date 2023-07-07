@@ -5,7 +5,6 @@ const todoSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-
 });
 
 const createModel = (userName)=>{
