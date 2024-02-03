@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: ./client 
+      dockerfile: Dockerfile
+    ports:
+      - 127.0.0.1:3000:3000 
+    environment:
+      - REACT_APP_BASE_URL=http://127.0.0.1:3001
+      - REACT_APP_AES_SECRET_KEY=soydios
+    depends_on:
+      - backend
+      - db
+    networks:
+      - mynet
+
+  backend:
+    command: npm start
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 127.0.0.1:3001:3001
+    environment:
+      - PORT=3001
+      - AES_SECRET_KEY=soydios
+      - SHA3_DB_SECRET_KEY=soydios
+      - JWT_SECRET_KEY=thisisjwtsecretkey
+      - MONGO_URI=mongodb://db:27017/todo-mern
+    depends_on:
+      - db
+    networks:
+      - mynet
+
+  db:
+    image: mongo:jammy
+    ports:
+      - 127.0.0.1:2717:2717
+    volumes:
+      - todo_db:/data/db
+    networks:
+      - mynet
+
+volumes:
+  todo_db:
+networks:
+  mynet:
+
