@@ -24,9 +24,10 @@ MONGO_URI=<Local/online mongo URI>
 /client/.env
 
 ```
-REACT_APP_BASE_URL=<Local/online mongo URI>
-REACT_APP_AES_SECRET_KEY=<String>
+REACT_APP_BASE_URL=<server url ex:127.0.0.1:3001, localhost:3001>
+REACT_APP_AES_SECRET_KEY=<String> 
 ```
+NOTE: AES secret keys should be same for server and client. (In real world scenario this key should be shared with client in a secure way)
 
 ### Run the application
 
